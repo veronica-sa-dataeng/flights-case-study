@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 DEFAULT_ARGS = {
         "owner": "Veronica Sa",
         "start_date": dates.days_ago(1),
-        "email": ["celulardaveve@gmail.com"],
+        "email": ["veronica.s.dataeng@gmail.com"],
         "email_on_failure": True,
         "catchup": False,
         "email_on_retry": False,
