@@ -1,0 +1,159 @@
+[2025-03-24T17:12:11.994+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-24T17:12:12.036+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_eng_dag_etl.creating_ddl_task manual__2025-03-24T17:12:08.548641+00:00 [queued]>
+[2025-03-24T17:12:12.058+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_eng_dag_etl.creating_ddl_task manual__2025-03-24T17:12:08.548641+00:00 [queued]>
+[2025-03-24T17:12:12.058+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-03-24T17:12:12.078+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): creating_ddl_task> on 2025-03-24 17:12:08.548641+00:00
+[2025-03-24T17:12:12.084+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=116) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-24T17:12:12.085+0000] {standard_task_runner.py:72} INFO - Started process 118 to run task
+[2025-03-24T17:12:12.086+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'data_eng_dag_etl', 'creating_ddl_task', 'manual__2025-03-24T17:12:08.548641+00:00', '--job-id', '111', '--raw', '--subdir', 'DAGS_FOLDER/data-eng-dag-etl/dag.py', '--cfg-path', '/tmp/tmpihyc4met']
+[2025-03-24T17:12:12.087+0000] {standard_task_runner.py:105} INFO - Job 111: Subtask creating_ddl_task
+[2025-03-24T17:12:12.144+0000] {task_command.py:467} INFO - Running <TaskInstance: data_eng_dag_etl.creating_ddl_task manual__2025-03-24T17:12:08.548641+00:00 [running]> on host b9b67894a304
+[2025-03-24T17:12:12.260+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='celulardaveve@gmail.com' AIRFLOW_CTX_DAG_OWNER='Veronica Sa' AIRFLOW_CTX_DAG_ID='data_eng_dag_etl' AIRFLOW_CTX_TASK_ID='creating_ddl_task' AIRFLOW_CTX_EXECUTION_DATE='2025-03-24T17:12:08.548641+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-24T17:12:08.548641+00:00'
+[2025-03-24T17:12:12.261+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-24T17:12:12.297+0000] {base.py:84} INFO - Retrieving connection 'snowflake_default'
+[2025-03-24T17:12:12.298+0000] {connection.py:424} INFO - Snowflake Connector for Python Version: 3.13.2, Python Version: 3.12.9, Platform: Linux-6.8.0-52-generic-x86_64-with-glibc2.36
+[2025-03-24T17:12:12.301+0000] {connection.py:1213} INFO - Connecting to GLOBAL Snowflake domain
+[2025-03-24T17:12:12.302+0000] {connection.py:1295} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2025-03-24T17:12:14.417+0000] {sql.py:511} INFO - Running statement: SELECT *
+    FROM TABLE(
+    INFER_SCHEMA(
+      LOCATION=>'@RECRUITMENT_DB.PUBLIC.S3_FOLDER/flights.gz'
+      , FILE_FORMAT=>'infer_schema_format'
+      )
+    );, parameters: None
+[2025-03-24T17:12:20.958+0000] {sql.py:520} INFO - Rows affected: 1
+[2025-03-24T17:12:20.959+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/snowflake/hooks/snowflake.py:468: DeprecationWarning: Import of fetch_all_handler from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+  result = self._make_common_data_structure(handler(cur))  # type: ignore[attr-defined]
+
+[2025-03-24T17:12:20.963+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/snowflake/hooks/snowflake.py:469: DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+  if return_single_query_results(sql, return_last, split_statements):
+
+[2025-03-24T17:12:20.963+0000] {snowflake.py:477} INFO - Rows affected: 1
+[2025-03-24T17:12:20.964+0000] {snowflake.py:478} INFO - Snowflake query id: 01bb39e8-0907-c6ea-006a-f2030076e10e
+[2025-03-24T17:12:21.265+0000] {connection.py:803} INFO - closed
+[2025-03-24T17:12:21.571+0000] {connection.py:809} INFO - No async queries seem to be running, deleting session
+[2025-03-24T17:12:21.879+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/snowflake/hooks/snowflake.py:487: DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+  if return_single_query_results(sql, return_last, split_statements):
+
+[2025-03-24T17:12:21.880+0000] {dag.py:46} INFO - String with all columns
+[2025-03-24T17:12:21.880+0000] {dag.py:47} INFO - [('TRANSACTIONID|FLIGHTDATE|AIRLINECODE|AIRLINENAME|TAILNUM|FLIGHTNUM|ORIGINAIRPORTCODE|ORIGAIRPORTNAME|ORIGINCITYNAME|ORIGINSTATE|ORIGINSTATENAME|DESTAIRPORTCODE|DESTAIRPORTNAME|DESTCITYNAME|DESTSTATE|DESTSTATENAME|CRSDEPTIME|DEPTIME|DEPDELAY|TAXIOUT|WHEELSOFF|WHEELSON|TAXIIN|CRSARRTIME|ARRTIME|ARRDELAY|CRSELAPSEDTIME|ACTUALELAPSEDTIME|CANCELLED|DIVERTED|DISTANCE', 'TEXT', True, '$1::TEXT', 'flights.gz', 0)]
+[2025-03-24T17:12:21.880+0000] {dag.py:53} INFO - Column name in list without pipes
+[2025-03-24T17:12:21.880+0000] {dag.py:54} INFO - ['TRANSACTIONID', 'FLIGHTDATE', 'AIRLINECODE', 'AIRLINENAME', 'TAILNUM', 'FLIGHTNUM', 'ORIGINAIRPORTCODE', 'ORIGAIRPORTNAME', 'ORIGINCITYNAME', 'ORIGINSTATE', 'ORIGINSTATENAME', 'DESTAIRPORTCODE', 'DESTAIRPORTNAME', 'DESTCITYNAME', 'DESTSTATE', 'DESTSTATENAME', 'CRSDEPTIME', 'DEPTIME', 'DEPDELAY', 'TAXIOUT', 'WHEELSOFF', 'WHEELSON', 'TAXIIN', 'CRSARRTIME', 'ARRTIME', 'ARRDELAY', 'CRSELAPSEDTIME', 'ACTUALELAPSEDTIME', 'CANCELLED', 'DIVERTED', 'DISTANCE']
+[2025-03-24T17:12:21.880+0000] {dag.py:71} INFO - Final DDL:
+[2025-03-24T17:12:21.881+0000] {dag.py:72} INFO - CREATE OR REPLACE TABLE flights (
+    TRANSACTIONID VARCHAR,
+    FLIGHTDATE DATE,
+    AIRLINECODE VARCHAR,
+    AIRLINENAME VARCHAR,
+    TAILNUM VARCHAR,
+    FLIGHTNUM VARCHAR,
+    ORIGINAIRPORTCODE VARCHAR,
+    ORIGAIRPORTNAME VARCHAR,
+    ORIGINCITYNAME VARCHAR,
+    ORIGINSTATE VARCHAR,
+    ORIGINSTATENAME VARCHAR,
+    DESTAIRPORTCODE VARCHAR,
+    DESTAIRPORTNAME VARCHAR,
+    DESTCITYNAME VARCHAR,
+    DESTSTATE VARCHAR,
+    DESTSTATENAME VARCHAR,
+    CRSDEPTIME DATE,
+    DEPTIME DATE,
+    DEPDELAY VARCHAR,
+    TAXIOUT VARCHAR,
+    WHEELSOFF VARCHAR,
+    WHEELSON VARCHAR,
+    TAXIIN VARCHAR,
+    CRSARRTIME DATE,
+    ARRTIME DATE,
+    ARRDELAY VARCHAR,
+    CRSELAPSEDTIME DATE,
+    ACTUALELAPSEDTIME DATE,
+    CANCELLED BOOLEAN,
+    DIVERTED BOOLEAN,
+    DISTANCE VARCHAR
+);
+[2025-03-24T17:12:21.881+0000] {connection.py:424} INFO - Snowflake Connector for Python Version: 3.13.2, Python Version: 3.12.9, Platform: Linux-6.8.0-52-generic-x86_64-with-glibc2.36
+[2025-03-24T17:12:21.882+0000] {connection.py:1213} INFO - Connecting to GLOBAL Snowflake domain
+[2025-03-24T17:12:21.882+0000] {connection.py:1295} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2025-03-24T17:12:23.312+0000] {sql.py:511} INFO - Running statement: CREATE OR REPLACE TABLE flights (
+    TRANSACTIONID VARCHAR,
+    FLIGHTDATE DATE,
+    AIRLINECODE VARCHAR,
+    AIRLINENAME VARCHAR,
+    TAILNUM VARCHAR,
+    FLIGHTNUM VARCHAR,
+    ORIGINAIRPORTCODE VARCHAR,
+    ORIGAIRPORTNAME VARCHAR,
+    ORIGINCITYNAME VARCHAR,
+    ORIGINSTATE VARCHAR,
+    ORIGINSTATENAME VARCHAR,
+    DESTAIRPORTCODE VARCHAR,
+    DESTAIRPORTNAME VARCHAR,
+    DESTCITYNAME VARCHAR,
+    DESTSTATE VARCHAR,
+    DESTSTATENAME VARCHAR,
+    CRSDEPTIME DATE,
+    DEPTIME DATE,
+    DEPDELAY VARCHAR,
+    TAXIOUT VARCHAR,
+    WHEELSOFF VARCHAR,
+    WHEELSON VARCHAR,
+    TAXIIN VARCHAR,
+    CRSARRTIME DATE,
+    ARRTIME DATE,
+    ARRDELAY VARCHAR,
+    CRSELAPSEDTIME DATE,
+    ACTUALELAPSEDTIME DATE,
+    CANCELLED BOOLEAN,
+    DIVERTED BOOLEAN,
+    DISTANCE VARCHAR
+);, parameters: None
+[2025-03-24T17:12:23.823+0000] {sql.py:520} INFO - Rows affected: 1
+[2025-03-24T17:12:23.824+0000] {snowflake.py:477} INFO - Rows affected: 1
+[2025-03-24T17:12:23.824+0000] {snowflake.py:478} INFO - Snowflake query id: 01bb39e8-0907-d01f-006a-f2030076c886
+[2025-03-24T17:12:24.131+0000] {connection.py:803} INFO - closed
+[2025-03-24T17:12:24.439+0000] {connection.py:809} INFO - No async queries seem to be running, deleting session
+[2025-03-24T17:12:24.749+0000] {python.py:240} INFO - Done. Returned value was: CREATE OR REPLACE TABLE flights (
+    TRANSACTIONID VARCHAR,
+    FLIGHTDATE DATE,
+    AIRLINECODE VARCHAR,
+    AIRLINENAME VARCHAR,
+    TAILNUM VARCHAR,
+    FLIGHTNUM VARCHAR,
+    ORIGINAIRPORTCODE VARCHAR,
+    ORIGAIRPORTNAME VARCHAR,
+    ORIGINCITYNAME VARCHAR,
+    ORIGINSTATE VARCHAR,
+    ORIGINSTATENAME VARCHAR,
+    DESTAIRPORTCODE VARCHAR,
+    DESTAIRPORTNAME VARCHAR,
+    DESTCITYNAME VARCHAR,
+    DESTSTATE VARCHAR,
+    DESTSTATENAME VARCHAR,
+    CRSDEPTIME DATE,
+    DEPTIME DATE,
+    DEPDELAY VARCHAR,
+    TAXIOUT VARCHAR,
+    WHEELSOFF VARCHAR,
+    WHEELSON VARCHAR,
+    TAXIIN VARCHAR,
+    CRSARRTIME DATE,
+    ARRTIME DATE,
+    ARRDELAY VARCHAR,
+    CRSELAPSEDTIME DATE,
+    ACTUALELAPSEDTIME DATE,
+    CANCELLED BOOLEAN,
+    DIVERTED BOOLEAN,
+    DISTANCE VARCHAR
+);
+[2025-03-24T17:12:24.797+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-24T17:12:24.797+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=data_eng_dag_etl, task_id=creating_ddl_task, run_id=manual__2025-03-24T17:12:08.548641+00:00, execution_date=20250324T171208, start_date=20250324T171212, end_date=20250324T171224
+[2025-03-24T17:12:24.863+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-24T17:12:24.907+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-24T17:12:24.910+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
