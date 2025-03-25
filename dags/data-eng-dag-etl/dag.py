@@ -195,7 +195,8 @@ def fact_table():
     LEFT JOIN RECRUITMENT_DB.CANDIDATE_00184.DIM_AIRPORT orig 
     ON flatfile.ORIGINAIRPORTCODE = orig.airportcode
     LEFT JOIN RECRUITMENT_DB.CANDIDATE_00184.DIM_AIRPORT dest 
-    ON flatfile.DESTAIRPORTCODE = dest.airportcode
+    ON flatfile.DESTAIRPORTCODE = dest.airportcode;
+    DROP TABLE RECRUITMENT_DB.CANDIDATE_00184.FLIGHTS;
     """
     hook.run(query)
     count_after = hook.get_records("SELECT COUNT(*) FROM RECRUITMENT_DB.CANDIDATE_00184.FACT_FLIGHTS")[0][0]
