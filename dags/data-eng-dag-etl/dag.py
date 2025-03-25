@@ -6,15 +6,11 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.utils.dates import days_ago
 from importlib import import_module
 from airflow.operators.dummy_operator import DummyOperator
-import pandas as pd
-import zipfile
-import pandas as pd
 import logging
+
 sf_queries = import_module("data-eng-dag-etl.queries")
 m = import_module("data-eng-dag-etl.main")
 logger = logging.getLogger(__name__)
-
-
 
 DEFAULT_ARGS = {
         "owner": "Veronica Sa",
