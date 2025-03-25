@@ -11,9 +11,8 @@ CREATE OR REPLACE FILE FORMAT infer_schema_format
     ENCODING = 'UTF8'
     PARSE_HEADER = true;
 CSV File Format with Custom Delimiters
-```sql
-
-```sql
+```
+```
 CREATE OR REPLACE FILE FORMAT csv_format
     TYPE = 'CSV'
     COMPRESSION = 'GZIP'
