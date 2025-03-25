@@ -65,11 +65,8 @@ def creating_ddl():
         ddl += f"    {col} {column_type},\n"
 
     ddl = ddl.rstrip(",\n") + "\n);"
-
-    logger.info('Final DDL:')
-    logger.info(ddl)
     hook.run(ddl)
-    return ddl 
+    return 
 
 def load_file_to_table():
     
@@ -78,7 +75,6 @@ def load_file_to_table():
         FROM @PUBLIC.S3_FOLDER/flights.gz
         FILE_FORMAT = csv_format;
     """
-    
     hook.run(copy_sql)
 
 def dim_tables():
@@ -104,7 +100,7 @@ def dim_tables():
     count_after = hook.get_records("SELECT COUNT(*) FROM RECRUITMENT_DB.CANDIDATE_00184.DIM_AIRLINE")[0][0]
     logger.info(f"Row count for DIM_AIRLINE - Before: {count_before}, After: {count_after}")
 
-    count_before = hook.run("SELECT COUNT(*) FROM RECRUITMENT_DB.CANDIDATE_00184.DIM_AIRPORT")[0][0]
+    count_before = hook.get_records("SELECT COUNT(*) FROM RECRUITMENT_DB.CANDIDATE_00184.DIM_AIRPORT")[0][0]
     query = """
     TRUNCATE TABLE RECRUITMENT_DB.CANDIDATE_00184.DIM_AIRPORT;
     INSERT INTO RECRUITMENT_DB.CANDIDATE_00184."DIM_AIRPORT"
@@ -146,11 +142,9 @@ def dim_tables():
     hook.run(query)
     count_after = hook.get_records("SELECT COUNT(*) FROM RECRUITMENT_DB.CANDIDATE_00184.DIM_AIRPORT")[0][0]
     logger.info(f"Row count for DIM_AIRLINE - Before: {count_before}, After: {count_after}")
-    
     return 
 
 def fact_table():
-
     count_before = hook.get_records("SELECT COUNT(*) FROM RECRUITMENT_DB.CANDIDATE_00184.FACT_FLIGHTS")[0][0]
     query = """
     TRUNCATE TABLE RECRUITMENT_DB.CANDIDATE_00184.FACT_FLIGHTS;
