@@ -1,8 +1,11 @@
-# flights-case-study
+# Flights Case Study
 
-This repository contains SQL scripts to create the necessary tables and views for the recruitment database. Below are the details of the scripts.
+In this project, I am working with a compressed flat file (flights.gz) containing data about domestic flights in the United States. The data is stored as a stage file in S3 and will serve as the foundation for the ETL process. I am using Airflow for workflow orchestration, Python and Pandas for data processing, and Snowflake for data storage and querying. The goal is to load the data into Snowflake, model it appropriately, and make it ready for business intelligence analysis with Tableau.
+
+Flat File:![alt text](https://github.com/veronica-sa-dataeng/flights-case-study/blob/dev/images/flat%20file.png?raw=true "Flat File")
 
 ## **1. File Format Creation**
+I created a file format in Snowflake to properly load the compressed flat file (flights.gz) and handle its format and compression.
 
 ```sql
 CREATE OR REPLACE FILE FORMAT infer_schema_format
@@ -48,7 +51,7 @@ CREATE OR REPLACE TABLE RECRUITMENT_DB.CANDIDATE_00184.DIM_AIRPORT (
 );
 ```
 
-### **FACT_FLIGHTS Tablee**
+### **FACT_FLIGHTS Table**
 
 ```sql
 CREATE OR REPLACE TABLE RECRUITMENT_DB.CANDIDATE_00184.FACT_FLIGHTS (
@@ -114,6 +117,19 @@ JOIN
 JOIN 
     "RECRUITMENT_DB"."CANDIDATE_00184"."DIM_AIRPORT" d ON f."DESTAIRPORTID" = d."AIRPORT_ID";
 ```
+## **4. Tables and Views created**
 
-## **4. Apache Airflow Docker Compose**
+![alt text](https://github.com/veronica-sa-dataeng/flights-case-study/blob/dev/images/tables%2C%20views%20and%20file%20formats.png "Snowflake")
+
+## **4.1 Data Loaded**
+
+![alt text](https://github.com/veronica-sa-dataeng/flights-case-study/blob/dev/images/loadedtables.gif "Data Loaded")
+
+## **5. Airflow dag**
+
+![alt text](https://github.com/veronica-sa-dataeng/flights-case-study/blob/dev/images/airflow.gif "Airflow")
+
+
+
+## **6. Apache Airflow Docker Compose**
 <a href="https://airflow.apache.org/docs/apache-airflow/stable/docker-compose.yaml" target="_blank">Docker Compose for Airflow</a>
