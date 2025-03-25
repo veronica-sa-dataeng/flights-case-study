@@ -13,7 +13,6 @@ CREATE OR REPLACE FILE FORMAT infer_schema_format
     COMPRESSION = 'GZIP'
     ENCODING = 'UTF8'
     PARSE_HEADER = true;
-CSV File Format with Custom Delimiters
 ```
 ```
 CREATE OR REPLACE FILE FORMAT csv_format
