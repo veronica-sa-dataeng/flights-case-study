@@ -83,8 +83,10 @@ def load_file_to_table():
 
 def dim_tables():
 
-    count_before = hook.run("SELECT COUNT(*) FROM RECRUITMENT_DB.CANDIDATE_00184.DIM_AIRLINE")[0][0]
+    count_before = hook.get_records("SELECT COUNT(*) FROM RECRUITMENT_DB.CANDIDATE_00184.DIM_AIRLINE")[0][0]
+
     query = """
+    TRUNCATE TABLE RECRUITMENT_DB.CANDIDATE_00184.DIM_AIRLINE;
     INSERT INTO RECRUITMENT_DB.CANDIDATE_00184.DIM_AIRLINE 
     SELECT  
         ROW_NUMBER() OVER (ORDER BY "AIRLINECODE") AS "AIRLINE_ID",
@@ -99,11 +101,12 @@ def dim_tables():
     
     """
     hook.run(query)
-    count_after = hook.run("SELECT COUNT(*) FROM RECRUITMENT_DB.CANDIDATE_00184.DIM_AIRLINE")[0][0]
-    logger.info(f"Row count for DIM_AIRLINE: {count_after - count_before}")
+    count_after = hook.get_records("SELECT COUNT(*) FROM RECRUITMENT_DB.CANDIDATE_00184.DIM_AIRLINE")[0][0]
+    logger.info(f"Row count for DIM_AIRLINE - Before: {count_before}, After: {count_after}")
 
     count_before = hook.run("SELECT COUNT(*) FROM RECRUITMENT_DB.CANDIDATE_00184.DIM_AIRPORT")[0][0]
     query = """
+    TRUNCATE TABLE RECRUITMENT_DB.CANDIDATE_00184.DIM_AIRPORT;
     INSERT INTO RECRUITMENT_DB.CANDIDATE_00184."DIM_AIRPORT"
     SELECT 
         ROW_NUMBER() OVER (ORDER BY "AIRPORTNAME") AS "AIRPORT_ID",
@@ -141,15 +144,16 @@ def dim_tables():
         GROUP BY "AIRPORTNAME","AIRPORTCODE","CITYNAME","STATECODE","STATENAME"
     """
     hook.run(query)
-    count_after = hook.run("SELECT COUNT(*) FROM RECRUITMENT_DB.CANDIDATE_00184.DIM_AIRPORT")[0][0]
-    logger.info(f"Row count for DIM_AIRPORT: {count_after - count_before}")
+    count_after = hook.get_records("SELECT COUNT(*) FROM RECRUITMENT_DB.CANDIDATE_00184.DIM_AIRPORT")[0][0]
+    logger.info(f"Row count for DIM_AIRLINE - Before: {count_before}, After: {count_after}")
     
     return 
 
 def fact_table():
 
-    count_before = hook.run("SELECT COUNT(*) FROM RECRUITMENT_DB.CANDIDATE_00184.FACT_FLIGHTS")[0][0]
+    count_before = hook.get_records("SELECT COUNT(*) FROM RECRUITMENT_DB.CANDIDATE_00184.FACT_FLIGHTS")[0][0]
     query = """
+    TRUNCATE TABLE RECRUITMENT_DB.CANDIDATE_00184.FACT_FLIGHTS;
     INSERT INTO "RECRUITMENT_DB"."CANDIDATE_00184"."FACT_FLIGHTS" 
     SELECT 
         ROW_NUMBER() OVER (ORDER BY "TRANSACTIONID") AS "FLIGHT_ID",
@@ -200,8 +204,8 @@ def fact_table():
     ON flatfile.DESTAIRPORTCODE = dest.airportcode
     """
     hook.run(query)
-    count_after = hook.run("SELECT COUNT(*) FROM RECRUITMENT_DB.CANDIDATE_00184.FACT_FLIGHTS")[0][0]
-    logger.info(f"Row count for FACT_FLIGHTS: {count_after - count_before}")
+    count_after = hook.get_records("SELECT COUNT(*) FROM RECRUITMENT_DB.CANDIDATE_00184.FACT_FLIGHTS")[0][0]
+    logger.info(f"Row count for DIM_AIRLINE - Before: {count_before}, After: {count_after}")
     return 
 
 
