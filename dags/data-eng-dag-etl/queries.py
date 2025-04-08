@@ -84,8 +84,20 @@ insert_dim_fact_table = """
         orig."AIRPORT_ID" AS "ORIGAIRPORTID",
         dest."AIRPORT_ID" AS "DESTAIRPORTID",
         airline."AIRLINE_ID",
-        flatfile."TAXIOUT",
-        flatfile."TAXIIN",
+        CASE WHEN 
+            flatfile."TAXIOUT" IS NULL
+        THEN 
+            0
+        ELSE 
+            flatfile."TAXIOUT"
+        END AS "TAXIOUT",
+        CASE WHEN 
+            flatfile."TAXIIN" IS NULL
+        THEN 
+            0
+        ELSE 
+            flatfile."TAXIIN"
+        END AS "TAXIIN",
         flatfile."CRSELAPSEDTIME",
         flatfile."ACTUALELAPSEDTIME",
         flatfile."DIVERTED",
